@@ -1,0 +1,18 @@
+.pharmacy-card {
+    background: #1e293b;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-right: 5px solid #38bdf8;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.pharmacy-card h3 { margin: 0 0 10px 0; color: #38bdf8; }
+.btn-call {
+    display: inline-block;
+    background: #38bdf8;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 10px;
+}
