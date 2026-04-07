@@ -7,13 +7,29 @@ import { showAddJobForm } from './forms/jobs_form.js';
 import { showAddReportForm } from './forms/reports_form.js';
 
 const modules = {
-  pharmacies: { render: renderPharmacies, containerId: 'pharmacies-container', fetcher: fetchPharmacies, addForm: null },
-  realestate: { render: renderRealEstate, containerId: 'realestate-container', fetcher: fetchRealEstate, addForm: showAddRealEstateForm },
-  jobs: { render: renderJobs, containerId: 'jobs-container', fetcher: fetchJobs, addForm: showAddJobForm },
-  reports: { render: renderReports, containerId: 'reports-container', fetcher: fetchReports, addForm: showAddReportForm }
+  pharmacies: { render: renderPharmacies, containerId: 'pharmacies-container', fetcher: fetchPharmacies, addForm: null, title: 'الصيدليات' },
+  realestate: { render: renderRealEstate, containerId: 'realestate-container', fetcher: fetchRealEstate, addForm: showAddRealEstateForm, title: 'العقارات' },
+  jobs: { render: renderJobs, containerId: 'jobs-container', fetcher: fetchJobs, addForm: showAddJobForm, title: 'الوظائف' },
+  reports: { render: renderReports, containerId: 'reports-container', fetcher: fetchReports, addForm: showAddReportForm, title: 'التبليغات' }
 };
 
 let currentTab = 'pharmacies';
+
+// عداد متحرك
+function animateNumber(element, target) {
+  if (!element) return;
+  let current = 0;
+  const step = Math.ceil(target / 30);
+  const interval = setInterval(() => {
+    current += step;
+    if (current >= target) {
+      element.textContent = target;
+      clearInterval(interval);
+    } else {
+      element.textContent = current;
+    }
+  }, 20);
+}
 
 async function updateStats() {
   const stats = {
@@ -24,7 +40,7 @@ async function updateStats() {
   };
   for (const [key, value] of Object.entries(stats)) {
     const el = document.getElementById(`stat-${key}`);
-    if (el) el.textContent = value;
+    if (el) animateNumber(el, value);
   }
 }
 
@@ -38,18 +54,29 @@ async function refreshCurrentTab() {
 
 async function showTab(tabId) {
   if (!modules[tabId]) return;
+  // تحديث الأزرار النشطة
+  document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+  const activeNav = document.querySelector(`.nav-btn[data-tab="${tabId}"]`);
+  if (activeNav) activeNav.classList.add('active');
+  // إظهار المحتوى
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
   const container = document.getElementById(modules[tabId].containerId);
   if (container) container.classList.add('active');
-  const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-  if (activeBtn) activeBtn.classList.add('active');
+  // تحديث عنوان الصفحة وزر الإضافة
+  document.getElementById('current-tab-title').textContent = modules[tabId].title;
+  const addBtn = document.getElementById('add-btn-main');
+  if (modules[tabId].addForm) {
+    addBtn.style.display = 'flex';
+    addBtn.onclick = () => modules[tabId].addForm(() => refreshCurrentTab());
+  } else {
+    addBtn.style.display = 'none';
+  }
   currentTab = tabId;
   await modules[tabId].render(modules[tabId].containerId);
 }
 
-function initTabs() {
-  document.querySelectorAll('.tab-btn').forEach(btn => {
+function initNav() {
+  document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const tab = btn.getAttribute('data-tab');
       showTab(tab);
@@ -57,45 +84,22 @@ function initTabs() {
   });
 }
 
-function initAddButtons() {
-  // إضافة أزرار "إضافة جديدة" بجانب كل تبويب (ستظهر في واجهة المستخدم)
-  const tabsContainer = document.querySelector('.tabs-container');
-  if (!tabsContainer) return;
-
-  for (const [key, mod] of Object.entries(modules)) {
-    if (mod.addForm) {
-      const addBtn = document.createElement('button');
-      addBtn.textContent = '+ إضافة';
-      addBtn.className = 'add-btn';
-      addBtn.setAttribute('data-tab', key);
-      addBtn.style.background = 'var(--secondary)';
-      addBtn.style.color = '#1e2a3e';
-      addBtn.style.borderRadius = '40px';
-      addBtn.style.padding = '0.5rem 1rem';
-      addBtn.style.margin = '0 0.2rem';
-      addBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        mod.addForm(() => refreshCurrentTab());
-      });
-      tabsContainer.appendChild(addBtn);
-    }
-  }
-}
-
 function initDarkMode() {
-  const btn = document.getElementById('theme-toggle-btn');
+  const btn = document.getElementById('theme-toggle-sidebar');
   const isDark = localStorage.getItem('darkMode') === 'true';
   if (isDark) document.body.classList.add('dark');
+  btn.innerHTML = isDark ? '<i class="fas fa-sun"></i> الوضع الفاتح' : '<i class="fas fa-moon"></i> الوضع المظلم';
   btn.addEventListener('click', () => {
     document.body.classList.toggle('dark');
-    localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+    const isNowDark = document.body.classList.contains('dark');
+    localStorage.setItem('darkMode', isNowDark);
+    btn.innerHTML = isNowDark ? '<i class="fas fa-sun"></i> الوضع الفاتح' : '<i class="fas fa-moon"></i> الوضع المظلم';
   });
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  initTabs();
+  initNav();
   initDarkMode();
-  initAddButtons();
   await showTab('pharmacies');
   await updateStats();
   setInterval(updateStats, 30000);

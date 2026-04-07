@@ -5,8 +5,12 @@ body.dark {
   --text-muted: #cbd5e1;
   --border: #334155;
   --shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
-  --shadow-hover: 0 20px 30px -12px rgba(0,0,0,0.5);
+  --shadow-lg: 0 20px 35px -10px rgba(0,0,0,0.5);
 }
-body.dark .tab-btn { color: #94a3b8; }
-body.dark .tab-btn.active { background: var(--secondary); color: #0f172a; }
-body.dark .footer { background: #020617; }
+body.dark .sidebar { background: linear-gradient(180deg, #0a0f1e 0%, #020617 100%); }
+body.dark .stat-card { background: #1e293b; }
+body.dark .skeleton { background: linear-gradient(110deg, #334155 8%, #1e293b 18%, #334155 33%); }
+body.dark .report-status.pending { background: #422c0c; color: #fbbf24; }
+body.dark .report-status.in_progress { background: #1e3a8a; color: #60a5fa; }
+body.dark .report-status.resolved { background: #064e3b; color: #34d399; }
+body.dark .report-status.rejected { background: #7f1d1d; color: #f87171; }

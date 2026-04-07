@@ -1,139 +1,85 @@
-/* أنماط البطاقات المحسنة مع Skeleton */
+/* بطاقات البيانات */
 #pharmacies-container, #realestate-container, #jobs-container, #reports-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.5rem;
-  padding: 1rem;
 }
 .pharmacy-card, .realestate-card, .job-card, .report-card {
   background: var(--card-bg);
-  border-radius: 24px;
+  border-radius: 28px;
   padding: 1.25rem;
   transition: var(--transition);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(2px);
 }
 .pharmacy-card:hover, .realestate-card:hover, .job-card:hover, .report-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-hover);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--shadow-lg);
 }
-/* شارة الحراسة */
 .pharmacy-card.on-duty { border-right: 6px solid var(--secondary); background: linear-gradient(145deg, var(--card-bg), rgba(46,204,113,0.05)); }
 .duty-badge {
-  position: absolute; top: 12px; left: 12px;
+  position: absolute; top: 16px; left: 16px;
   background: var(--secondary); color: white;
   padding: 4px 12px; border-radius: 30px;
   font-size: 0.7rem; font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
-/* أزرار */
+.pharmacy-name, .realestate-title, .job-title, .report-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+.pharmacy-address, .realestate-location, .job-company, .job-location, .report-location {
+  color: var(--text-muted);
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
 .call-button, .contact-button, .apply-button {
-  display: inline-block; margin-top: 1rem;
-  background: var(--primary); color: white;
-  padding: 8px 16px; border-radius: 40px;
-  text-decoration: none; font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  background: var(--primary);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-size: 0.85rem;
   transition: var(--transition);
+  border: none;
+  cursor: pointer;
 }
 .call-button:hover, .contact-button:hover, .apply-button:hover {
-  background: var(--primary-light);
+  background: var(--primary-dark);
   transform: scale(0.98);
 }
 /* حالة التبليغات */
 .report-status {
-  display: inline-block; padding: 4px 12px; border-radius: 30px;
-  font-size: 0.7rem; font-weight: bold; margin: 0.5rem 0;
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
 }
 .report-status.pending { background: #fef3c7; color: #d97706; }
 .report-status.in_progress { background: #dbeafe; color: #2563eb; }
 .report-status.resolved { background: #d1fae5; color: #059669; }
 .report-status.rejected { background: #fee2e2; color: #dc2626; }
-/* Skeleton loader */
-.skeleton {
-  background: linear-gradient(110deg, var(--border) 8%, #ececec 18%, var(--border) 33%);
-  background-size: 200% 100%;
-  animation: 1.5s shine linear infinite;
-  border-radius: 12px;
-}
+.report-image { width: 100%; max-height: 160px; object-fit: cover; border-radius: 16px; margin-top: 0.8rem; }
+/* Skeleton loading */
+.skeleton { background: linear-gradient(110deg, var(--border) 8%, #ececec 18%, var(--border) 33%); background-size: 200% 100%; animation: shine 1.5s infinite linear; border-radius: 20px; }
 @keyframes shine { to { background-position-x: -200%; } }
-.loading-spinner { text-align: center; padding: 2rem; color: var(--text-muted); }
-.empty-message, .error-message { text-align: center; padding: 2rem; background: var(--card-bg); border-radius: 24px; }
+.loading-spinner, .empty-message, .error-message { text-align: center; padding: 3rem; background: var(--card-bg); border-radius: 28px; color: var(--text-muted); }
 @media (max-width: 640px) {
   #pharmacies-container, #realestate-container, #jobs-container, #reports-container {
     grid-template-columns: 1fr;
   }
-}
-
-/* أنماط النوافذ المنبثقة (Modal) */
-.smart-modal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.smart-modal-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(4px);
-}
-.smart-modal-container {
-  position: relative;
-  background: var(--card-bg);
-  border-radius: 32px;
-  width: 90%;
-  max-width: 500px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: var(--shadow-hover);
-  z-index: 2001;
-}
-.smart-modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--border);
-}
-.smart-modal-close {
-  background: none;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: var(--text-muted);
-}
-.smart-modal-body {
-  padding: 1.5rem;
-}
-.smart-modal-body form label {
-  display: block;
-  margin-top: 1rem;
-  font-weight: 600;
-}
-.smart-modal-body form input,
-.smart-modal-body form select,
-.smart-modal-body form textarea {
-  width: 100%;
-  padding: 0.6rem;
-  margin-top: 0.3rem;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--bg);
-  color: var(--text);
-  font-family: inherit;
-}
-.smart-modal-body form button {
-  margin-top: 1.5rem;
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 0.8rem;
-  border-radius: 40px;
-  width: 100%;
-  font-weight: bold;
-  cursor: pointer;
 }
