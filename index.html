@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الصيدليات | تاوريرت سمارت سيتي</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Taourirt Smart City</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="css/panels.css">
-    <style>
-        body { background-color: #0f172a; color: white; font-family: sans-serif; padding: 20px; }
-        .pharmacy-container { margin-top: 20px; }
-    </style>
 </head>
 <body>
-    <header style="text-align: center; margin-bottom: 30px;">
-        <h1>🏥 صيدليات تاوريرت</h1>
-        <p>دليل الخدمات الصحية المفتوحة الآن</p>
-    </header>
+    <div class="header-card">
+        <h1>TAOURIRT HUB <span style="color:var(--primary)">2.0</span></h1>
+        <p style="opacity: 0.8;">الجيل الجديد من الخدمات الرقمية</p>
+    </div>
 
-    <div id="map-container" style="height: 300px; border-radius: 20px; margin-bottom: 20px; overflow: hidden; border: 2px solid #38bdf8;">
+    <div id="map-container" style="height: 250px; border-radius: 24px; margin-bottom: 25px; overflow: hidden;">
         <div id="map" style="height: 100%;"></div>
     </div>
-    <div id="pharmacies-list" class="pharmacy-container">
-        <p style="text-align: center;">جاري تحميل البيانات... ⏳</p>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <h2 style="font-size: 1.2rem; margin: 0;">🏥 الصيدليات المتاحة</h2>
+        <span style="font-size: 0.8rem; color: var(--primary);">تاوريرت الآن</span>
     </div>
 
+    <div id="pharmacies-list">
+        </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script type="module" src="js/main.js"></script>
 </body>

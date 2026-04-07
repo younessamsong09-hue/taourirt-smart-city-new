@@ -1,18 +1,88 @@
+:root {
+    --primary: #38bdf8;
+    --bg-dark: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --text-main: #f8fafc;
+}
+
+body {
+    background: radial-gradient(circle at top right, #1e293b, #0f172a);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 15px;
+    line-height: 1.6;
+}
+
+/* بطاقة العنوان الاحترافية */
+.header-card {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(29, 78, 216, 0.2));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 30px 20px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.header-card h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px var(--primary);
+}
+
+/* تصميم بطاقة الصيدلية الزجاجي */
 .pharmacy-card {
-    background: #1e293b;
-    border-radius: 15px;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
     padding: 20px;
     margin-bottom: 15px;
-    border-right: 5px solid #38bdf8;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
-.pharmacy-card h3 { margin: 0 0 10px 0; color: #38bdf8; }
-.btn-call {
-    display: inline-block;
-    background: #38bdf8;
+
+.pharmacy-card:active {
+    transform: scale(0.98);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 30px;
+}
+
+.status-open { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #22c55e; }
+.status-closed { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+
+/* أزرار تفاعلية */
+.btn-action {
+    background: linear-gradient(90deg, #38bdf8, #2563eb);
     color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: bold;
     text-decoration: none;
-    margin-top: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+#map-container {
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
