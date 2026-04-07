@@ -78,3 +78,16 @@ body {
   .stat { font-size: 0.8rem; }
   .tab-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
 }
+.add-btn {
+  background: var(--secondary);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.add-btn:hover {
+  transform: scale(1.02);
+  filter: brightness(1.05);
+}
