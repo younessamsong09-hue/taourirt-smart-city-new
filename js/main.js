@@ -1,9 +1,10 @@
-// js/main.js - حالياً يدير الصيدليات فقط، للتوسع أضف وحدات جديدة بنفس النمط
+// js/main.js - يدير الصيدليات والعقارات بشكل منفصل، جاهز للتوسع
 import { renderPharmacies } from './modules/pharmacies.js';
+import { renderRealEstate } from './modules/real_estate.js';
 
-// سجل الوحدات (يمكن إضافة realestate, reports, jobs لاحقاً)
 const modules = {
-  pharmacies: { btnId: 'btn-pharmacies', containerId: 'pharmacies-container', render: renderPharmacies }
+  pharmacies: { btnId: 'btn-pharmacies', containerId: 'pharmacies-container', render: renderPharmacies },
+  realestate: { btnId: 'btn-realestate', containerId: 'realestate-container', render: renderRealEstate }
 };
 
 function hideAll() {
@@ -23,7 +24,11 @@ async function showModule(key) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.getElementById('btn-pharmacies');
-  if (btn) btn.addEventListener('click', () => showModule('pharmacies'));
+  // إضافة مستمعي الأزرار
+  for (const [key, mod] of Object.entries(modules)) {
+    const btn = document.getElementById(mod.btnId);
+    if (btn) btn.addEventListener('click', () => showModule(key));
+  }
+  // عرض الصيدليات افتراضياً
   showModule('pharmacies');
 });

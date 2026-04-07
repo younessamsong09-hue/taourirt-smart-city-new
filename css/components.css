@@ -33,3 +33,32 @@
 @media (max-width: 640px) {
   #pharmacies-container { grid-template-columns: 1fr; }
 }
+
+/* ===== وحدة العقارات ===== */
+#realestate-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  direction: rtl;
+}
+.realestate-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  padding: 1.2rem;
+  border: 1px solid #eef2f5;
+  transition: 0.2s;
+}
+.realestate-card:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
+.realestate-title { font-size: 1.2rem; font-weight: bold; margin: 0 0 0.5rem; color: #1e2a3e; }
+.realestate-location, .realestate-price, .realestate-type { margin: 0.3rem 0; color: #4b5563; }
+.contact-button {
+  display: inline-block; margin-top: 0.8rem;
+  background: #0f2b3d; color: white; padding: 8px 16px;
+  border-radius: 40px; text-decoration: none; font-size: 0.9rem;
+}
+.contact-button:hover { background: #1e4a6e; }
+@media (max-width: 640px) {
+  #realestate-container { grid-template-columns: 1fr; }
+}
