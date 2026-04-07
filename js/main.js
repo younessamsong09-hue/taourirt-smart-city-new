@@ -5,6 +5,7 @@ import { renderReports, fetchReports } from './modules/reports.js';
 import { showAddRealEstateForm } from './forms/realestate_form.js';
 import { showAddJobForm } from './forms/jobs_form.js';
 import { showAddReportForm } from './forms/reports_form.js';
+import { initParticleNetwork } from './effects/particles.js';
 
 const modules = {
   pharmacies: { render: renderPharmacies, containerId: 'pharmacies-container', fetcher: fetchPharmacies, addForm: null, title: 'الصيدليات' },
@@ -15,7 +16,6 @@ const modules = {
 
 let currentTab = 'pharmacies';
 
-// عداد متحرك
 function animateNumber(element, target) {
   if (!element) return;
   let current = 0;
@@ -52,18 +52,31 @@ async function refreshCurrentTab() {
   }
 }
 
+// تأثير الكتابة على العنوان
+function typeWriter(text, element, speed = 60) {
+  let i = 0;
+  element.textContent = '';
+  function type() {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+}
+
 async function showTab(tabId) {
   if (!modules[tabId]) return;
-  // تحديث الأزرار النشطة
   document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
   const activeNav = document.querySelector(`.nav-btn[data-tab="${tabId}"]`);
   if (activeNav) activeNav.classList.add('active');
-  // إظهار المحتوى
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   const container = document.getElementById(modules[tabId].containerId);
   if (container) container.classList.add('active');
-  // تحديث عنوان الصفحة وزر الإضافة
-  document.getElementById('current-tab-title').textContent = modules[tabId].title;
+  const titleEl = document.getElementById('current-tab-title');
+  const newTitle = modules[tabId].title;
+  typeWriter(newTitle, titleEl, 50);
   const addBtn = document.getElementById('add-btn-main');
   if (modules[tabId].addForm) {
     addBtn.style.display = 'flex';
@@ -98,6 +111,7 @@ function initDarkMode() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+  initParticleNetwork();
   initNav();
   initDarkMode();
   await showTab('pharmacies');

@@ -132,3 +132,28 @@ body {
   .main-content { padding: 1rem; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
+/* تأثير الزجاج (Glassmorphism) للعناصر الرئيسية */
+.sidebar {
+  background: rgba(15, 43, 61, 0.75) !important;
+  backdrop-filter: blur(12px);
+  border-left: 1px solid rgba(255,255,255,0.2);
+}
+.main-content {
+  background: transparent;
+}
+.stat-card, .pharmacy-card, .realestate-card, .job-card, .report-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+body.dark .stat-card,
+body.dark .pharmacy-card,
+body.dark .realestate-card,
+body.dark .job-card,
+body.dark .report-card {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255,255,255,0.1);
+}
+.add-main-btn, .theme-btn, .nav-btn.active {
+  backdrop-filter: blur(4px);
+}
