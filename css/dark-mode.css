@@ -1,0 +1,12 @@
+body.dark {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --text: #f1f5f9;
+  --text-muted: #cbd5e1;
+  --border: #334155;
+  --shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+  --shadow-hover: 0 20px 30px -12px rgba(0,0,0,0.5);
+}
+body.dark .tab-btn { color: #94a3b8; }
+body.dark .tab-btn.active { background: var(--secondary); color: #0f172a; }
+body.dark .footer { background: #020617; }

@@ -1,36 +1,53 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html dir="rtl" lang="ar">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>تاوريرت الذكية | مدينة متصلة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تاوريرت الذكية</title>
-    <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/dark-mode.css" id="dark-mode-styles">
 </head>
 <body>
-  <button id="btn-pharmacies">💊 الصيدليات</button>
-  <button id="btn-realestate">🏠 العقارات</button>
-  <button id="btn-jobs">💼 الوظائف</button>
-  <button id="btn-reports">📢 التبليغات</button>
-  <div id="pharmacies-container"></div>
-  <div id="realestate-container"></div>
-  <div id="jobs-container"></div>
-  <div id="reports-container"></div>
-    <div class="container">
-        <header>
-            <h1>🏙️ مدينة تاوريرت الذكية</h1>
-            <p>منصة الخدمات الرقمية الموحدة</p>
-        </header>
+  <div class="theme-toggle" id="theme-toggle-btn">🌙</div>
 
-        <nav class="tabs">
-            <button class="tab-btn" data-type="pharmacies">🏥 الصيدليات</button>
-            <button class="tab-btn" data-type="real_estate">🏠 العقارات</button>
-            <button class="tab-btn" data-type="reports">📢 التبليغات</button>
-            <button class="tab-btn" data-type="jobs">💼 الوظائف</button>
-        </nav>
-
-        <main id="app">جاري التحميل...</main>
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">🏙️ مدينة <span class="highlight">تاوريرت</span> الذكية</h1>
+      <p class="hero-subtitle">خدمات رقمية متكاملة، لحياة أسهل وأسرع</p>
+      <div class="hero-stats">
+        <div class="stat"><span id="stat-pharmacies">0</span> صيدلية</div>
+        <div class="stat"><span id="stat-realestate">0</span> عقار</div>
+        <div class="stat"><span id="stat-jobs">0</span> وظيفة</div>
+        <div class="stat"><span id="stat-reports">0</span> بلاغ</div>
+      </div>
     </div>
-    <script type="module" src="js/main.js"></script>
+  </section>
+
+  <div class="tabs-wrapper">
+    <div class="tabs-container">
+      <button class="tab-btn active" data-tab="pharmacies">💊 الصيدليات</button>
+      <button class="tab-btn" data-tab="realestate">🏠 العقارات</button>
+      <button class="tab-btn" data-tab="jobs">💼 الوظائف</button>
+      <button class="tab-btn" data-tab="reports">📢 التبليغات</button>
+    </div>
+  </div>
+
+  <main>
+    <div id="pharmacies-container" class="tab-content active"></div>
+    <div id="realestate-container" class="tab-content"></div>
+    <div id="jobs-container" class="tab-content"></div>
+    <div id="reports-container" class="tab-content"></div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 مدينة تاوريرت الذكية | نحو مستقبل متصل</p>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
