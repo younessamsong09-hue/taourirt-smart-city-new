@@ -62,3 +62,33 @@
 @media (max-width: 640px) {
   #realestate-container { grid-template-columns: 1fr; }
 }
+
+/* ===== وحدة الوظائف ===== */
+#jobs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  direction: rtl;
+}
+.job-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  padding: 1.2rem;
+  border: 1px solid #eef2f5;
+  transition: 0.2s;
+}
+.job-card:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
+.job-title { font-size: 1.2rem; font-weight: bold; margin: 0 0 0.5rem; color: #1e2a3e; }
+.job-company, .job-location, .job-type { margin: 0.3rem 0; color: #4b5563; }
+.job-description { margin: 0.5rem 0; color: #6b7280; font-size: 0.9rem; line-height: 1.4; }
+.apply-button {
+  display: inline-block; margin-top: 0.8rem;
+  background: #0f2b3d; color: white; padding: 8px 16px;
+  border-radius: 40px; text-decoration: none; font-size: 0.9rem;
+}
+.apply-button:hover { background: #1e4a6e; }
+@media (max-width: 640px) {
+  #jobs-container { grid-template-columns: 1fr; }
+}

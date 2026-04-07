@@ -1,10 +1,12 @@
-// js/main.js - يدير الصيدليات والعقارات بشكل منفصل، جاهز للتوسع
+// js/main.js - يدير الصيدليات، العقارات، والوظائف بشكل منفصل
 import { renderPharmacies } from './modules/pharmacies.js';
 import { renderRealEstate } from './modules/real_estate.js';
+import { renderJobs } from './modules/jobs.js';
 
 const modules = {
   pharmacies: { btnId: 'btn-pharmacies', containerId: 'pharmacies-container', render: renderPharmacies },
-  realestate: { btnId: 'btn-realestate', containerId: 'realestate-container', render: renderRealEstate }
+  realestate: { btnId: 'btn-realestate', containerId: 'realestate-container', render: renderRealEstate },
+  jobs: { btnId: 'btn-jobs', containerId: 'jobs-container', render: renderJobs }
 };
 
 function hideAll() {
@@ -24,11 +26,9 @@ async function showModule(key) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // إضافة مستمعي الأزرار
   for (const [key, mod] of Object.entries(modules)) {
     const btn = document.getElementById(mod.btnId);
     if (btn) btn.addEventListener('click', () => showModule(key));
   }
-  // عرض الصيدليات افتراضياً
-  showModule('pharmacies');
+  showModule('pharmacies'); // العرض الافتراضي
 });
