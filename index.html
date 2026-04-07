@@ -2,89 +2,63 @@
 <html dir="rtl" lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تاوريرت الذكية | Taourirt Smart City</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>تاوريرت الذكية | دليل الصيدليات</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="app-wrapper">
-    <!-- Sidebar -->
+  <div class="app">
+    <!-- Sidebar بسيط -->
     <aside class="sidebar">
       <div class="sidebar-brand">
         <h2><i class="fas fa-city"></i> تاوريرت <span>الذكية</span></h2>
-        <p>مدينة متصلة بذكاء</p>
+        <p>دليل الصيدليات - بالدارجة</p>
       </div>
       <nav class="sidebar-nav">
-        <button class="nav-item active" data-tab="pharmacies">
-          <i class="fas fa-prescription-bottle"></i> الصيدليات
+        <button class="nav-btn active" id="pharmacyTabBtn">
+          <i class="fas fa-prescription-bottle"></i> <span>الصيدليات</span>
         </button>
-        <button class="nav-item" data-tab="realestate">
-          <i class="fas fa-building"></i> العقارات
-        </button>
-        <button class="nav-item" data-tab="jobs">
-          <i class="fas fa-briefcase"></i> الوظائف
-        </button>
-        <button class="nav-item" data-tab="reports">
-          <i class="fas fa-exclamation-triangle"></i> التبليغات
-        </button>
+        <!-- سيتم إضافة وحدات أخرى لاحقاً -->
       </nav>
       <div class="sidebar-footer">
-        <button id="themeToggle" class="theme-switch">
-          <i class="fas fa-moon"></i> الوضع المظلم
-        </button>
+        <button id="voiceAssistBtn" class="voice-btn"><i class="fas fa-microphone-alt"></i> المساعد الصوتي</button>
+        <button id="themeToggle" class="theme-btn"><i class="fas fa-moon"></i> الوضع المظلم</button>
       </div>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-      <div class="stats-row" id="statsRow">
-        <div class="stat-box">
-          <i class="fas fa-prescription-bottle"></i>
-          <div class="stat-details">
-            <span class="stat-number" id="stat-pharmacies">0</span>
-            <span class="stat-label">صيدلية</span>
-          </div>
-        </div>
-        <div class="stat-box">
-          <i class="fas fa-building"></i>
-          <div class="stat-details">
-            <span class="stat-number" id="stat-realestate">0</span>
-            <span class="stat-label">عقار</span>
-          </div>
-        </div>
-        <div class="stat-box">
-          <i class="fas fa-briefcase"></i>
-          <div class="stat-details">
-            <span class="stat-number" id="stat-jobs">0</span>
-            <span class="stat-label">وظيفة</span>
-          </div>
-        </div>
-        <div class="stat-box">
-          <i class="fas fa-exclamation-triangle"></i>
-          <div class="stat-details">
-            <span class="stat-number" id="stat-reports">0</span>
-            <span class="stat-label">بلاغ</span>
-          </div>
-        </div>
+      <div class="stats-header">
+        <div class="stat-box"><i class="fas fa-prescription-bottle"></i><span id="totalPharmacies">0</span><label>صيدلية</label></div>
+        <div class="stat-box duty"><i class="fas fa-clock"></i><span id="openNow">0</span><label>مفتوحة الآن</label></div>
       </div>
 
-      <div class="content-header">
-        <h1 id="currentTitle">الصيدليات</h1>
-        <button id="addNewBtn" class="btn-add">+ إضافة جديدة</button>
+      <div class="map-controls">
+        <button id="locateMeBtn" class="locate-btn"><i class="fas fa-location-dot"></i> موقعي</button>
+        <button id="nearestPharmacyBtn" class="route-btn"><i class="fas fa-route"></i> أقرب صيدلية</button>
       </div>
 
-      <div id="pharmacies-container" class="tab-container active"></div>
-      <div id="realestate-container" class="tab-container"></div>
-      <div id="jobs-container" class="tab-container"></div>
-      <div id="reports-container" class="tab-container"></div>
+      <div id="map" class="pharmacy-map"></div>
+
+      <div class="pharmacy-list-header">
+        <h3><i class="fas fa-list"></i> قائمة الصيدليات</h3>
+        <input type="text" id="searchPharmacy" placeholder="🔍 بحث بالاسم أو الحي..." class="search-input">
+      </div>
+      <div id="pharmaciesList" class="pharmacies-list"></div>
     </main>
   </div>
 
+  <!-- الصوتيات -->
+  <audio id="voiceAudio" style="display:none"></audio>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
 </html>

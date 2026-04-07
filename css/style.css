@@ -1,0 +1,137 @@
+:root {
+  --primary: #0a2b3d;
+  --secondary: #2ecc71;
+  --bg: #f4f7fc;
+  --card: #ffffff;
+  --text: #1e2a3e;
+  --text-light: #64748b;
+  --border: #e2e8f0;
+  --shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  direction: rtl;
+}
+.app { display: flex; min-height: 100vh; }
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, var(--primary) 0%, #0d2b3e 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+.sidebar-brand { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-brand h2 { font-size: 1.3rem; }
+.sidebar-brand span { color: var(--secondary); }
+.sidebar-nav { flex:1; padding: 1rem; }
+.nav-btn {
+  background: transparent;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 12px;
+  color: rgba(255,255,255,0.8);
+  width: 100%;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+.nav-btn.active { background: var(--secondary); color: var(--primary); }
+.sidebar-footer { padding: 1rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 0.5rem; }
+.voice-btn, .theme-btn {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 40px;
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+/* Main */
+.main-content { flex:1; padding: 1rem; overflow-y: auto; }
+.stats-header {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.stat-box {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: var(--shadow);
+  flex:1;
+}
+.stat-box i { font-size: 1.6rem; color: var(--secondary); }
+.stat-box span { font-size: 1.4rem; font-weight: 800; margin-left: 0.3rem; }
+.map-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+.locate-btn, .route-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 40px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.pharmacy-map { height: 350px; border-radius: 24px; margin-bottom: 1rem; box-shadow: var(--shadow); }
+.pharmacy-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0 0.5rem;
+  flex-wrap: wrap;
+}
+.search-input {
+  padding: 0.4rem 1rem;
+  border-radius: 60px;
+  border: 1px solid var(--border);
+  font-family: inherit;
+  width: 200px;
+}
+.pharmacies-list {
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.pharmacy-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 0.8rem;
+  border-right: 4px solid transparent;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.pharmacy-card.on-duty { border-right-color: var(--secondary); background: #f0fdf4; }
+.pharmacy-name { font-weight: 700; display: flex; justify-content: space-between; }
+.pharmacy-address, .pharmacy-phone { font-size: 0.8rem; color: var(--text-light); }
+.call-btn { background: var(--primary); color: white; padding: 0.2rem 0.6rem; border-radius: 30px; text-decoration: none; font-size: 0.7rem; }
+.empty-msg { text-align: center; padding: 1rem; color: var(--text-light); }
+@media (max-width: 768px) {
+  .sidebar { width: 70px; }
+  .sidebar-brand h2, .sidebar-brand p, .nav-btn span, .voice-btn span, .theme-btn span { display: none; }
+  .nav-btn, .voice-btn, .theme-btn { justify-content: center; }
+}
