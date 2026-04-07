@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>تاوريرت الذكية | دليل الصيدليات</title>
+  <title>TAOURIRT HUB | دليل الصيدليات</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,49 +13,59 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="app">
-    <!-- Sidebar بسيط -->
-    <aside class="sidebar">
-      <div class="sidebar-brand">
-        <h2><i class="fas fa-city"></i> تاوريرت <span>الذكية</span></h2>
-        <p>دليل الصيدليات - بالدارجة</p>
+  <!-- Header الرئيسي -->
+  <header class="main-header">
+    <h1>TAOURIRT <span>HUB</span></h1>
+    <p>دليل مدينة تاوريرت - خدمات صحية وتجارية</p>
+    <div class="header-stats">
+      <div class="stat">
+        <span id="totalPharmacies">0</span>
+        <label>صيدلية</label>
       </div>
-      <nav class="sidebar-nav">
-        <button class="nav-btn active" id="pharmacyTabBtn">
-          <i class="fas fa-prescription-bottle"></i> <span>الصيدليات</span>
-        </button>
-        <!-- سيتم إضافة وحدات أخرى لاحقاً -->
-      </nav>
-      <div class="sidebar-footer">
-        <button id="voiceAssistBtn" class="voice-btn"><i class="fas fa-microphone-alt"></i> المساعد الصوتي</button>
-        <button id="themeToggle" class="theme-btn"><i class="fas fa-moon"></i> الوضع المظلم</button>
+      <div class="stat">
+        <span id="openNowCount">0</span>
+        <label>مفتوحة الآن</label>
       </div>
-    </aside>
+      <div class="stat">
+        <span id="usersCount">+1K</span>
+        <label>زائر</label>
+      </div>
+    </div>
+  </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <div class="stats-header">
-        <div class="stat-box"><i class="fas fa-prescription-bottle"></i><span id="totalPharmacies">0</span><label>صيدلية</label></div>
-        <div class="stat-box duty"><i class="fas fa-clock"></i><span id="openNow">0</span><label>مفتوحة الآن</label></div>
-      </div>
-
-      <div class="map-controls">
-        <button id="locateMeBtn" class="locate-btn"><i class="fas fa-location-dot"></i> موقعي</button>
-        <button id="nearestPharmacyBtn" class="route-btn"><i class="fas fa-route"></i> أقرب صيدلية</button>
-      </div>
-
-      <div id="map" class="pharmacy-map"></div>
-
-      <div class="pharmacy-list-header">
-        <h3><i class="fas fa-list"></i> قائمة الصيدليات</h3>
-        <input type="text" id="searchPharmacy" placeholder="🔍 بحث بالاسم أو الحي..." class="search-input">
-      </div>
-      <div id="pharmaciesList" class="pharmacies-list"></div>
-    </main>
+  <!-- أزرار الإجراءات السريعة -->
+  <div class="quick-actions">
+    <button id="bloodBtn"><i class="fas fa-tint"></i> التبرع بالدم <span>0</span></button>
+    <button id="lostBtn"><i class="fas fa-search"></i> المفقودات <span>0</span></button>
+    <button id="jobsBtn"><i class="fas fa-briefcase"></i> وظائف <span>3</span></button>
   </div>
 
-  <!-- الصوتيات -->
-  <audio id="voiceAudio" style="display:none"></audio>
+  <!-- الخريطة -->
+  <div class="map-container">
+    <div id="map" class="pharmacy-map"></div>
+  </div>
+
+  <!-- شريط البحث والفلاتر -->
+  <div class="search-section">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="بحث بالاسم أو الحي...">
+    </div>
+    <div class="neighborhood-filters" id="neighborhoodFilters"></div>
+  </div>
+
+  <!-- قائمة الصيدليات -->
+  <div class="pharmacy-list-header">
+    <h3><i class="fas fa-list"></i> الصيدليات</h3>
+    <span id="resultCount">0</span>
+  </div>
+  <div id="pharmaciesList" class="pharmacies-list"></div>
+
+  <!-- أيقونة المساعد الذكي -->
+  <button id="voiceAssistant" class="voice-assistant">
+    <i class="fas fa-microphone-alt"></i>
+    <span class="pulse-ring"></span>
+  </button>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
