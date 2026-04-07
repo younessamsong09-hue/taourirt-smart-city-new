@@ -1,0 +1,35 @@
+/* css/components.css - خاص بوحدة الصيدليات */
+#pharmacies-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  direction: rtl;
+}
+.pharmacy-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  padding: 1.2rem;
+  position: relative;
+  border: 1px solid #eef2f5;
+  transition: 0.2s;
+}
+.pharmacy-card:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
+.pharmacy-card.on-duty { border-right: 5px solid #2ecc71; background: #f0fdf4; }
+.pharmacy-name { font-size: 1.3rem; font-weight: bold; margin: 0 0 0.5rem; }
+.pharmacy-address, .pharmacy-phone { margin: 0.3rem 0; color: #4b5563; }
+.duty-badge {
+  position: absolute; top: 12px; left: 12px;
+  background: #2ecc71; color: white; font-size: 0.7rem;
+  padding: 4px 10px; border-radius: 30px;
+}
+.call-button {
+  display: inline-block; margin-top: 0.8rem;
+  background: #0f2b3d; color: white; padding: 8px 16px;
+  border-radius: 40px; text-decoration: none; font-size: 0.9rem;
+}
+.call-button.disabled { background: #9ca3af; cursor: default; }
+@media (max-width: 640px) {
+  #pharmacies-container { grid-template-columns: 1fr; }
+}
