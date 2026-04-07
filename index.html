@@ -2,51 +2,88 @@
 <html dir="rtl" lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>تاوريرت الذكية | مدينة متصلة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تاوريرت الذكية | Taourirt Smart City</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/dark-mode.css" id="dark-mode-styles">
 </head>
 <body>
-  <div class="theme-toggle" id="theme-toggle-btn">🌙</div>
-
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1 class="hero-title">🏙️ مدينة <span class="highlight">تاوريرت</span> الذكية</h1>
-      <p class="hero-subtitle">خدمات رقمية متكاملة، لحياة أسهل وأسرع</p>
-      <div class="hero-stats">
-        <div class="stat"><span id="stat-pharmacies">0</span> صيدلية</div>
-        <div class="stat"><span id="stat-realestate">0</span> عقار</div>
-        <div class="stat"><span id="stat-jobs">0</span> وظيفة</div>
-        <div class="stat"><span id="stat-reports">0</span> بلاغ</div>
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <h2><i class="fas fa-city"></i> تاوريرت <span>الذكية</span></h2>
+        <p>مدينة متصلة بذكاء</p>
       </div>
-    </div>
-  </section>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="pharmacies">
+          <i class="fas fa-prescription-bottle"></i> الصيدليات
+        </button>
+        <button class="nav-item" data-tab="realestate">
+          <i class="fas fa-building"></i> العقارات
+        </button>
+        <button class="nav-item" data-tab="jobs">
+          <i class="fas fa-briefcase"></i> الوظائف
+        </button>
+        <button class="nav-item" data-tab="reports">
+          <i class="fas fa-exclamation-triangle"></i> التبليغات
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="themeToggle" class="theme-switch">
+          <i class="fas fa-moon"></i> الوضع المظلم
+        </button>
+      </div>
+    </aside>
 
-  <div class="tabs-wrapper">
-    <div class="tabs-container">
-      <button class="tab-btn active" data-tab="pharmacies">💊 الصيدليات</button>
-      <button class="tab-btn" data-tab="realestate">🏠 العقارات</button>
-      <button class="tab-btn" data-tab="jobs">💼 الوظائف</button>
-      <button class="tab-btn" data-tab="reports">📢 التبليغات</button>
-    </div>
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="stats-row" id="statsRow">
+        <div class="stat-box">
+          <i class="fas fa-prescription-bottle"></i>
+          <div class="stat-details">
+            <span class="stat-number" id="stat-pharmacies">0</span>
+            <span class="stat-label">صيدلية</span>
+          </div>
+        </div>
+        <div class="stat-box">
+          <i class="fas fa-building"></i>
+          <div class="stat-details">
+            <span class="stat-number" id="stat-realestate">0</span>
+            <span class="stat-label">عقار</span>
+          </div>
+        </div>
+        <div class="stat-box">
+          <i class="fas fa-briefcase"></i>
+          <div class="stat-details">
+            <span class="stat-number" id="stat-jobs">0</span>
+            <span class="stat-label">وظيفة</span>
+          </div>
+        </div>
+        <div class="stat-box">
+          <i class="fas fa-exclamation-triangle"></i>
+          <div class="stat-details">
+            <span class="stat-number" id="stat-reports">0</span>
+            <span class="stat-label">بلاغ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-header">
+        <h1 id="currentTitle">الصيدليات</h1>
+        <button id="addNewBtn" class="btn-add">+ إضافة جديدة</button>
+      </div>
+
+      <div id="pharmacies-container" class="tab-container active"></div>
+      <div id="realestate-container" class="tab-container"></div>
+      <div id="jobs-container" class="tab-container"></div>
+      <div id="reports-container" class="tab-container"></div>
+    </main>
   </div>
-
-  <main>
-    <div id="pharmacies-container" class="tab-content active"></div>
-    <div id="realestate-container" class="tab-content"></div>
-    <div id="jobs-container" class="tab-content"></div>
-    <div id="reports-container" class="tab-content"></div>
-  </main>
-
-  <footer class="footer">
-    <p>© 2025 مدينة تاوريرت الذكية | نحو مستقبل متصل</p>
-  </footer>
 
   <script type="module" src="js/main.js"></script>
 </body>
