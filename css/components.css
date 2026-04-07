@@ -92,3 +92,52 @@
 @media (max-width: 640px) {
   #jobs-container { grid-template-columns: 1fr; }
 }
+
+/* ===== وحدة التبليغات ===== */
+#reports-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  direction: rtl;
+}
+.report-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  padding: 1.2rem;
+  border: 1px solid #eef2f5;
+  transition: 0.2s;
+}
+.report-card:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
+.report-title { font-size: 1.2rem; font-weight: bold; margin: 0 0 0.5rem; color: #1e2a3e; }
+.report-location { margin: 0.3rem 0; color: #4b5563; }
+.report-description { margin: 0.5rem 0; color: #6b7280; font-size: 0.9rem; line-height: 1.4; }
+.report-status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+.report-status.pending { background: #fef3c7; color: #d97706; }
+.report-status.in_progress { background: #dbeafe; color: #2563eb; }
+.report-status.resolved { background: #d1fae5; color: #059669; }
+.report-status.rejected { background: #fee2e2; color: #dc2626; }
+.report-image {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 0.5rem 0;
+}
+.report-date {
+  display: block;
+  margin-top: 0.5rem;
+  color: #9ca3af;
+  font-size: 0.7rem;
+}
+@media (max-width: 640px) {
+  #reports-container { grid-template-columns: 1fr; }
+}
